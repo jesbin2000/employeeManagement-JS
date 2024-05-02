@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="p-0 d-flex mainContainer position-relavite">
+        <div class="col-lg-2 col-md-2 col-sm-2 sideMenu d-flex flex-column">
+            <div class="mainHead ms-3 pt-3">
+                <h4 class="fw-normal mb-0 text-white ">Employee</h4>
+                <h4 class="fw-lighter mb-0 pb-4 text-white">Management</h4>
+            </div>
+            <nav class="flex-grow-1 list-menu">
+                <ul class="mt-5">
+                    <li ><a href="#"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+                    <li ><a href="index.html"><i class="fa-solid fa-chart-simple"></i>Employees</a></li>
+                    <li ><a href="#"><i class="fa-solid fa-user"></i>My Profile</a></li>
+                    <li ><a href="#"><i class="fa-solid fa-lock"></i>Logout</a></li>
+                </ul>
+            </nav>
+            <div class="logo-section d-flex align-items-center gap-1 justify-content-center pb-4 pt-4" >
+                <p class="text-light mb-0 ">Powered by</p>
+                <img src="Images/Stackup.png" alt="">
+            </div>
+        </div>
+        <div class="col-lg-10 employeeDetails d-flex flex-column ">
+            <div class="row py-4 px-4">
+                <div class="subHead col-lg-8 ">
+                    <p class=" mb-0">Dashboard /Employees/Details</p>
+                    <h2 class=" textColour p-0">Employees</h2>
+                </div>
+                <div class="searchSection col-lg-3 bg-white  rounded-pill d-flex align-items-center gap-3 flex-grow-1">
+                    <div class="searchBar d-flex bg-light ps-3 gap-1 rounded-pill py-2 ">
+                            <label for="searchInput"><i class="fa-solid fa-magnifying-glass text-secondary"></i></label>
+                            <input class="bg-light border-0 searchInput" type="text" placeholder="Search">
+                    </div>
+                    <div class="d-flex align-items-center gap-1 ">
+                        <i class="fa-regular fa-bell fs-5 text-secondary "></i>
+                        <img class="rounded-circle me-1" src="Images/search.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row profileView justify-content-center position-relative flex-grow-1">
+                <div class="col-7 roundBorder p-3 bg-white shadow mb-5">
+                    <div class="row roundBorder">
+                        <img src="Images/Background Image.png">
+                    </div>
+                    <div class="profilePhoto rounded-circle overflow-hidden border-4 border border-white p-0 position-absolute">
+                        <img class="" src="Images/Avatar.png" alt="" id="Viewimage">
+                    </div>
+                    <div class="row employeName">
+                        <h6 class="textColour text-center mt-3 pt-4 fw-bold" id="view-name">Mr. Michael Johnson</h6>
+                        <p class="text-center" id="view-mail">michaeljohnson@example.com</p>
+                    </div>
+                    <div class="row gap-4 align-items-center justify-content-center">
+                        <div class="row gap-3 justify-content-center p-3 ">
+                            <div class="col shadow-sm bg-body roundBorder p-2">
+                                <p class="section mb-0 pb-3">Gender</p>
+                                <h6 class="textColour" id="viewgender">Male</h6>
+                            </div>
+                            <div class="col shadow-sm bg-body roundBorder p-2 flex-grow-1">
+                                <p class="section mb-0 pb-3">Age</p>
+                                <h6 class="textColour" id="viewage">38</h6>
+                            </div>
+                            <div class="col shadow-sm bg-body roundBorder p-2">
+                                <p class="section mb-0 pb-3">Date of Birth</p>
+                                <h6 class="textColour" id="viewdob">20 December 1985</h6>
+                            </div>
+                        </div>
+                        <div class="row gap-3">
+                            <div class="col-5 shadow-sm bg-body roundBorder p-2 flex-grow-1 ">
+                                <p class="section mb-0 pb-3">Mobile Number</p>
+                                <h6 class="textColour" id="viewmob">6282656985</h6>
+                            </div>
+                            <div class="col-6 shadow-sm bg-body roundBorder p-2 ">
+                                <p class="section mb-0 pb-3">Qualification</p>
+                                <h6 class="textColour" id="viewqualification">BTech</h6>
+                            </div>
+                        </div>
+                        <div class="row gap-3">
+                            <div class="col-5 shadow-sm bg-body roundBorder p-2 flex-grow-1 ">
+                                <p class="section mb-0 pb-3">Address</p>
+                                <h6 class="textColour" id="viewaddress">details</h6>
+                            </div>
+                            <div class="col-6 shadow-sm bg-body roundBorder p-2">
+                                <p class="section mb-0 pb-3">Username</p>
+                                <h6 class="textColour"id="viewusername">Michael</h6>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end ">
+                            <div class="col-4 view_button">
+                            <button class="btn-danger my-3 border-0 p-3 mx-2 text-white roundBorder" id="view-delete_btn">Delete</button>
+                            <button class="btn-primary my-3 border-0 p-3 mx-2 text-white roundBorder" id="view-edit_btn">Edit Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="waterMark d-flex pb-4">
+                <p class="footerText text-secondary m-0 ps-4">© 2023  All Rights Reserved. Stackup</p>
+                <div class="d-flex justify-content-end flex-grow-1 pe-4 gap-5">
+                    <p class="footerText text-secondary justify-content-end m-0">Terms of Use</p>
+                    <p class="footerText text-secondary m-0">Privacy Policy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Edit Form -->
+    <div class="container-fluid d-flex gap-2 p-0  justify-content-center textColour bg-Section position-absolute edit-Employee h-100"id="editEmployeeFrom">
+        <div class=" col-lg-6 col-md-12 col-sm-12 bg-white p-4 mt-4 mb-3 roundBorder formSheet overflow-auto">
+            <div class="row">
+                <div class="col-10">
+                    <p class="h3 heading fw-5 col-lg-10 pb-4">Edit Employee</p>
+                </div>
+                <div class="col-2 ">
+                    <button class="border-0 bg-white" id="closeForm" onclick="closeForms()"><i class="fa-solid fa-xmark fs-2 textColour ps-5 ms-4" ></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file_upload col-lg-2 mb-3 ms-4 d-flex text-center mt-4 rounded text-secondary ">
+                    <!-- <img class="py-2 edit_img" src="Images/Rectangle 346 (1).png" alt=""> -->
+                    <input class="form-control d-none" type="file" id="editImgFile" accept="image/png,image/jpg,image/jpeg">
+                    <label class="upload col-12 rounded-3 p-1 m-0 d-flex  justify-content-center">
+                        <img src="Images/blankAvatar.png" class="edit_img" id="editProfilePic">
+                    </label>
+                </div>
+                <div class="changeBtn col-lg-2 justify-content-center d-flex flex-column">
+                    <label for="editImgFile" id="editImg" class="rounded-pill border-0 text-primary py-2 bg-light text-center">Change</label>
+                </div>
+            </div>
+            <div class="form_block d-flex flex-column gap-4">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12  d-flex flex-column gap-1">
+                    <label  class="form-label fw-normal m-0 text">Salutation</label>
+                        <select class="forms p-2 " aria-label="select" id="editSalutation">
+                            <option selected value="" >select</option>
+                            <option >Mr.</option>
+                            <option >Mrs.</option>
+                            <option >Ms.</option>
+                        </select>
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 d-flex flex-column gap-1">
+                        <label for="editFirstName" class="form-label fw-normal m-0">First Name</label>
+                        <input type="text" placeholder="John" class="forms p-2" id="editFirstName">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-sm-6 d-flex flex-column gap-1">
+                        <label for="editLastName" class="form-label fw-normal m-0">Last Name</label>
+                        <input type="text" placeholder="doe" class="forms p-2" id="editLastName">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1">
+                        <label for="editEmail" class="form-label fw-normal m-0 ">Email Address</label>
+                        <input type="email" placeholder="mail@simmmple.com" class="forms p-2" id="editEmail">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1 top-margin">
+                        <label for="editPhNo" class="form-label fw-normal m-0 ">Mobile Number</label>
+                        <input type="number" placeholder="enter mobile number" class="forms p-2" id="editPhNo">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1">
+                        <label for="editUserId" class="form-label fw-normal m-0">user Name</label>
+                        <input type="text" placeholder="User Name" class="forms p-2" id="editUserId">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1">
+                        <label for="editPassWord" class="form-label fw-normal m-0">Password</label>
+                        <input type="password" placeholder="password" class="forms p-2" id="editPassWord">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1">
+                        <label for="editDOB" class="form-label fw-normal m-0 ">Date of Birth</label>
+                        <input type="date" placeholder="select date of birth" class="forms p-2 text-secondary" id="editDOB">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                    <div class="col-6 d-flex flex-column gap-1 top-margin">
+                        <div class="form-label fw-normal m-0 gender-txt">Gender</div>
+                        <div class="gender d-flex gap-4 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="male" id="flexRadioDefault3">
+                            <label class="form-check-label" for="flexRadioDefault3" >Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="female" id="flexRadioDefault4">
+                            <label class="form-check-label" for="flexRadioDefault4">Female</label>
+                        </div>
+                    </div>
+                    <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex flex-column gap-1">
+                        <label for="editQualification" class="form-label fw-normal m-0 text">Qualifications</label>
+                        <input type="text" placeholder="enter address" class="forms p-2" id="editQualification">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex flex-column gap-1">
+                        <label for="editAdress" class="form-label fw-normal m-0 text">Address</label>
+                        <input type="text" placeholder="enter address" class="forms p-2" id="editAdress">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12  d-flex flex-column gap-1">
+                        <label for="editCountry" class="form-label fw-normal m-0">Country</label>
+                        <select class="forms  p-2 text-secondary" aria-label="select" id="editCountry">
+                            <option selected value="">select</option>
+                            <option>India</option>
+                            <option>USA</option>
+                            <option>Pakisthan</option>
+                            <option>Albania</option>
+                        </select>
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1 top-margin">
+                        <label for="editState" class="form-label fw-normal m-0">State</label>
+                        <select class="forms  p-2 text-secondary" aria-label="select" id="editState">
+                            <option selected value="">select</option>
+                            <option >Kerala</option>
+                            <option >Tamilnadu</option>
+                            <option >Karnataka</option>
+                        </select>
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1">
+                        <label for="editCity" class="form-label fw-normal m-0 text">City</label>
+                        <input type="text" placeholder="enter city" class="forms p-2" id="editCity">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1 top-margin">
+                        <label for="editPinZip" class="form-label fw-normal m-0 text">Pin/Zip</label>
+                        <input type="text" placeholder="enter zip/pin" class="forms p-2" id="editPinZip">
+                        <div class="editErrorMsg fs-6 text-danger ms-2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-6 mt-4 p-0 justify-content-end d-flex">
+                <button type="button" class=" btn-light my-3 border-0 p-3 mx-2 text-dark roundBorder" onclick="closeForms()">Cancel</button>
+                <button type="submit" class=" btn-primary my-3 border-0 p-3 me-3 roundBorder" id="savechanges">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- view Delete From -->
+    <div class="container-fluid position-absolute bg-Section h-100 align-items-center d-flex justify-content-center delete-Section"  id="deleteSection">
+        <div class=" col-lg-5 bg-white textColour roundBorder">
+            <div class="row">
+                <div class="col-9 mt-3  ms-3">
+                    <p class="h3 heading fw-5 col-lg-10 pb-4">Delete Employee</p>
+                </div>
+            </div>
+            <p class=" mt-4 ps-3 fs-5">Are you sure you want to delete this employee?</p>
+            <div class="mt-4 p-0 justify-content-end d-flex">
+                <button type="button" class="btn btn-light my-3 border-0 p-3 mx-2 text-dark" onclick="closeForms()">Cancel</button>
+                <button type="button" class="btn btn-danger my-3 border-0 py-3 me-3 px-4" onclick="deleteForm()" id="deleteButn">Delete</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="profile.js"></script>
+</body>

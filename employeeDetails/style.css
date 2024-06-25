@@ -253,3 +253,7 @@ td{
 nav ul li:hover {
     max-width: none;
 }
+.active{
+    background-color: rgb(68, 0, 255)!important;
+    color: white !important;
+}

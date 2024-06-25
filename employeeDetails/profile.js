@@ -22,7 +22,7 @@ async function employeeDetails(id){
     const empdata =await employeeApi.json();
     // employees=empdata;
     // console.log(employees);
-    let newdate=empdata.dob;
+    let newdate=empdata.dob .split("-").reverse("-");
         ViewImage.src=(`http://localhost:3000/employees/${id}/avatar`)
         fullName.textContent=empdata.salutation+" "+empdata.firstName+" " +empdata.lastName;
         emailId.textContent=empdata.email;
@@ -33,13 +33,12 @@ async function employeeDetails(id){
         qualifiaction.textContent=empdata.qualifications;
         address.textContent=empdata.address;
         userName.textContent=empdata.username;
-        
     function calcAge(dob){
         let today=new Date();
         let DateofBirth=new Date(dob);
         let age = today.getFullYear() - DateofBirth.getFullYear();
         let monthDiffernce = today.getMonth()-DateofBirth.getMonth();
-        if(monthDiffernce <= 0 ||(monthDiffernce===0 && today.getDate()< DateofBirth.getDate() )){
+        if(monthDiffernce < 0 ||(monthDiffernce===0 && today.getDate()< DateofBirth.getDate() )){
             age--;
             return age;
         }
@@ -222,7 +221,6 @@ function editFormValidation(){
                 editErrorMsg[index].innerHTML="Check email fromat";
             }
         }
-
     validitationForm(editSalutation,0,"Select salutation");
     validitationForm(editFIrstName,1,"Frist name required");
     validitationForm(editSecondName,2,"Last name required");
@@ -237,11 +235,9 @@ function editFormValidation(){
     validitationForm(editState,12,"Select state ");
     validitationForm(editCity,13,"Select city ");
     validitationForm(editPinZip,14,"Enter pin/Zip");
-    
     function clearAlert(index){
         editErrorMsg[index].innerHTML="";
         }
-    
     editSalutation.addEventListener("input",()=>clearAlert(0))
     editFIrstName.addEventListener("input",()=>clearAlert(1))
     editSecondName.addEventListener("input",()=>clearAlert(2))
@@ -263,8 +259,6 @@ document.getElementById("savechanges").addEventListener("click",()=>{
     editFormValidation();
     employeeChanges();
     });
-    
-
     // <<---DELETE employee --->>
 document.getElementById("view-delete_btn").addEventListener("click",deleteEmployee(id))
 function deleteEmployee(id){

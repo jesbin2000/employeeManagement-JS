@@ -12,6 +12,7 @@ function deleteForm(){
 }
 function closeForms(){
     document.getElementById("dataform").reset();
+    profilePic.src="dummyApi/public/default-avatar.jpg";
     const viewPage = document.getElementById("addEmployeeFrom");
     viewPage.style.setProperty('display','none','important');
     const editPage = document.getElementById("editEmployeeFrom");
@@ -56,9 +57,9 @@ function displayEmpList(employeenData,srNo){
         </div>
     </td>
     </tr>`
-   
     srNo++;
     document.getElementById("tableBody").innerHTML = dataList;
+    document.getElementById("tottal-emp").innerHTML=`of ${dataArray.length}`;
     })
 }
 
@@ -142,7 +143,13 @@ async function addEmployee(){
         displayEmpList(dataArray);
         Pagination(0);
         closeForms();
-}
+        Swal.fire({
+            icon: "success",
+            title: "Employee added sucessfully...",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        }
     catch(error)
     {
         console.log("data not found",error);
@@ -151,12 +158,17 @@ async function addEmployee(){
 //-<<--Validation Add Employee-->>-
 errorMsg=document.getElementsByClassName("error_msg");
 function formValidation(){
+    let check=true ;
 let mobileValiadtion=(id,index,message)=>{
     if(id.value==""){
         errorMsg[index].innerHTML=message;
+        // id.focus();
+        check=false;
     }
     else if(!(id.value.length===10)){
         errorMsg[index].innerHTML="Mobile number must 10 digit";
+        // id.focus();
+        check=false;
     }
     else{
         errorMsg[index].innerHTML="";
@@ -165,6 +177,8 @@ let mobileValiadtion=(id,index,message)=>{
 let genderValidation = (index,message) => {
     if(!male.checked==true && !female.checked==true){
         errorMsg[index].innerHTML=message;
+        // id.focus();
+        check=false;
     }
     else if(male.checked==true || female.checked==true){
         errorMsg[index].innerHTML="";
@@ -173,15 +187,20 @@ let genderValidation = (index,message) => {
 let validitationForm = (id,index,message) => {
     if(id.value.trim()===""){
         errorMsg[index].innerHTML=message;
+        // id.focus();
+        check=false;
+        
         }
     else{
         errorMsg[index].innerHTML="";
-        }
+    }
     }
 let emailValidation = (id,index,message) => {
     let emailregex= /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(id.value.trim()===""){
         errorMsg[index].innerHTML=message;
+        // id.focus();
+        check=false;
         }
     else if(id.value.match(emailregex))
         {
@@ -190,12 +209,12 @@ let emailValidation = (id,index,message) => {
     else
         {
             errorMsg[index].innerHTML="Check email fromat";
+            // id.focus();
+            check=false;
         }
     }
-
 validitationForm(salutation,0,"Select salutation"),
 validitationForm(firstName,1,"Frist name required"),
-
 validitationForm(secondName,2,"Last name required"),
 emailValidation(emailid,3,"Email required"),
 mobileValiadtion(mobNo,4,"Enter your phone number"),
@@ -231,30 +250,38 @@ state.addEventListener("input",()=>clearAlert(12))
 city.addEventListener("input",()=>clearAlert(13))
 pinZip.addEventListener("input",()=>clearAlert(14))
 
+return check;
 
 }
 document.getElementById("addFormBtn").addEventListener("click",()=>{
-    formValidation();
-    addEmployee();
+    const validate= formValidation();
+    if(!validate){
+        return
+    }else{
+        addEmployee();
+    }
 });
 //<<---Delete Employee-->>
 function deleteEmployee(empId){
     deleteForm();
     deleteButn.addEventListener("click",()=>{
     try{
-        data=fetch(`http://localhost:3000/employees/${empId}`,{
+        fetch(`http://localhost:3000/employees/${empId}`,{
         method:"DELETE",
         headers:{'Content-Type': 'application/json'},
     })
     closeForms();
-    // window.location.reload();
-    // console.log(empId);
     dataArray.filter((element,index)=>{
         if(empId===element.id){
             dataArray.splice(index,1);
-            pages(currentPage);
-            pages(dataArray);
-            
+            Pagination(currentPage);
+            pages(dataArray); 
+            Swal.fire({
+                icon: "success",
+                title: "Employee deleted sucessfully...",
+                showConfirmButton: false,
+                timer: 2000
+            });
         }
     })
     }
@@ -263,7 +290,6 @@ function deleteEmployee(empId){
         }
     });
 }
-
 // <<---EDIT EMPLOYEE--->>
 
 const editSalutation = document.getElementById("editSalutation");
@@ -344,12 +370,15 @@ method:"PUT",
 headers: {'Content-Type': 'application/json'},
 body: JSON.stringify(editEmpData),
 })
+if(checkImg==
+    true){
 const profileImg=new FormData();
 profileImg.append("avatar",editInPutFile.files[0]);
-const avatar= await fetch(`http://localhost:3000/employees/${editEmpData.id}/avatar`,{
-    method:"POST",
-    body:profileImg
-})
+await fetch(`http://localhost:3000/employees/${editEmpData.id}/avatar`,{
+            method:"POST",
+            body:profileImg
+        })
+    }
 if(!employeeApi.ok)
     {
     throw new Error(`${employeeApi.status}`);
@@ -358,20 +387,29 @@ if(!employeeApi.ok)
         if(editEmpData.id===element.id){
             dataArray.splice(index,1,editEmpData);
             pages(dataArray);
-            Pagination(currentPage)
+            Pagination(currentPage-1)
         };
     })
     closeForms();
+    Swal.fire({
+        icon: "success",
+        title: "Employee updated sucessfully...",
+        showConfirmButton: false,
+        timer: 2000
+    });
     // window.location.reload();
     }
+    
 catch(error)
     {
         console.log("data not found",error);
     }
 }
+var checkImg=false;
 let editPic = document.getElementById("editProfilePic");
 let editInPutFile=document.getElementById("editImgFile");
 editInPutFile.onchange=function(){
+    checkImg=true
     editPic.src=URL.createObjectURL(editImgFile.files[0]);
 }
 
@@ -380,12 +418,17 @@ editErrorMsg=document.getElementsByClassName("editErrorMsg");
 
 // <<----EDIT FROM VALIDATION---->>
 function editFormValidation(){
+    let check=true
     let mobileValiadtion=(id,index,message)=>{
         if(id.value==""){
             editErrorMsg[index].innerHTML=message;
+            check=false;
+            // id.focus();
         }
         else if(!(id.value.length===10)){
             editErrorMsg[index].innerHTML="Mobile number must 10 digit";
+            // id.focus();
+            check=false;
         }
         else{
             editErrorMsg[index].innerHTML="";
@@ -394,6 +437,8 @@ function editFormValidation(){
     let validitationForm = (id,index,message) => {
         if(id.value.trim()===""){
             editErrorMsg[index].innerHTML=message;
+            // id.focus();
+            check=false;
             }
         else{
             editErrorMsg[index].innerHTML="";
@@ -403,6 +448,8 @@ function editFormValidation(){
         let emailregex= /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if(id.value.trim()===""){
             editErrorMsg[index].innerHTML=message;
+            // id.focus();
+            check=false;
             }
         else if(id.value.match(emailregex))
             {
@@ -411,6 +458,8 @@ function editFormValidation(){
         else
             {
                 editErrorMsg[index].innerHTML="Check email fromat";
+                // id.focus();
+                check=false;
             }
         }
 
@@ -449,13 +498,21 @@ function editFormValidation(){
     editState.addEventListener("input",()=>clearAlert(12))
     editCity.addEventListener("input",()=>clearAlert(13))
     editPinZip.addEventListener("input",()=>clearAlert(14))
+    return check;
 }
 document.getElementById("savechanges").addEventListener("click",()=>{
-    editFormValidation();
-    employeeChanges();
+    let Validation= editFormValidation();
+    if(!Validation){
+        console.log("something wrong")
+    }else{
+        employeeChanges();
+    }
     });
-
+    
 //<<--Pagination Employee LIst -->>}
+
+
+
 let currentPage;
 let noOfEmp;
 function pages(dataArray){
@@ -467,22 +524,21 @@ function pages(dataArray){
     let pagecreated="";
     for(currentPage=0;currentPage<noOfPages;currentPage++){
         
-        pagecreated +=`<li class="page-item p-1 position-static"><button class="page-link text-dark rounded" href="#" onclick="Pagination(${currentPage})">${currentPage+1}</button></li>`
+        pagecreated +=`<li class="page-item p-1 position-static " aria-current="page"><button class="page-link  rounded ashif" href="#" onclick="Pagination(${currentPage})">${currentPage+1}</button></li>`
     }
     document.getElementById("page_no").innerHTML= pagecreated;
     Pagination(0);
 }
 document.getElementById("selcetProfileNo").addEventListener("click",()=>{
+
     pages(dataArray);
-    // dataArray.reverse();
 });
+
+
 function Pagination(currentPage) {
     pageArray=[];
-    console.log("pagination list number",noOfEmp)
     let start=currentPage;
-    console.log("pagination button click number",start);
     let empStart=start*noOfEmp;
-    console.log(empStart);
     for(i=empStart;i<(empStart+noOfEmp);i++){
         if(dataArray[i]==null){
             break;
@@ -505,38 +561,52 @@ function Pagination(currentPage) {
     }
     document.getElementById("preview-butn").addEventListener("click",preview);
     displayEmpList(pageArray,empStart);
+    activeButn(currentPage)
 }
 
+function activeButn(currentPage){
+    pageNo = document.getElementById("page_no");
+    buttons = pageNo.querySelectorAll("button");
+    console.log(currentPage)
+    buttons.forEach((a) => {
+        // console.log(a)
+        if (parseInt(a.textContent) === currentPage + 1) {
+            a.classList.add("active");
+        } else {
+            a.classList.remove("active");
+        }
+    });
+}
 
+let searchData = [];
 
-// SEARCH EMPLOYEE
-
-let input = document.getElementById("search");
 function searchTable() {
-    var filter, found, table, tr, td, i, j;
-    displayEmpList(dataArray,0);
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tableData");
-    tr = table.getElementsByTagName("tr")
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
-        for (j = 0; j < td.length; j++) {
-            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                found = true;
+    let input = document.getElementById("search");
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById("tableBody");
+    searchData = [];
+    if (filter !== "") {
+        table.innerHTML = "";
+        for (let i = 0; i < dataArray.length; i++) {
+            let firstName = dataArray[i].firstName.toUpperCase();
+            let secondName = dataArray[i].lastName.toUpperCase();
+            let mail = dataArray[i].email.toUpperCase();
+            let mob= dataArray[i].phone.toUpperCase();
+            if (firstName.includes(filter) || secondName.includes(filter) || mail.includes(filter)||mob.includes(filter)) {
+                searchData.push(dataArray[i]);
             }
         }
-        if (found) {
-            tr[i].style.display = "";
-            found = false;
-        } else {
-            tr[i].style.display = "none";
+        
+        if(searchData.length==0){
+            displayEmpList(searchData,0);
+            document.getElementById("page_no").innerHTML= "";
+            document.getElementById("searchError").innerHTML=`<span class="text-danger fst-italic fw-bold">"${filter}"</span>   Employee not found`;
+        }else{
+            pages(searchData);
+            displayEmpList(searchData,0);
         }
-    }
-}
-document.getElementById("search").addEventListener("input",()=>{
-    if(input.value.trim()==""){
+    } else {
         Pagination(0);
-    }else{
-        searchTable();
     }
-})
+
+}

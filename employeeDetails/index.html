@@ -38,7 +38,7 @@
                 <div class="searchSection col-lg-3 bg-white  rounded-pill d-flex align-items-center gap-3 flex-grow-1 me-4">
                     <div class="searchBar d-flex bg-light ps-3 gap-1 rounded-pill py-2 align-items-center ">
                             <i class="fa-solid fa-magnifying-glass text-secondary"></i>
-                            <input class="bg-light border-0 searchInput" type="text" placeholder="Search" id="search">
+                            <input class="bg-light border-0 searchInput" type="text" placeholder="Search" id="search"  onkeyup=searchTable()>
                     </div>
                     <div class="d-flex align-items-center gap-2 ">
                         <i class="fa-regular fa-bell fs-5 text-secondary "></i>
@@ -58,7 +58,7 @@
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
-                        <p class="m-0">of 10</p>
+                        <p class="m-0" id="tottal-emp">of 10</p>
                     </div>
                     <div class="col-lg-8 justify-content-end d-flex pe-5 pt-4">
                         <button class="roundBorder roundedBtn border-0 bg-primary text-white " id="addEmployeeBtn" onclick="addForm()">Add Employee</button>
@@ -68,13 +68,13 @@
                     <table class="table" id="tableData">
                         <thead>
                             <tr>
-                                <th scope="col">Sl.No <i class="fa-solid fa-chevron-down"></i></th>
-                                <th scope="col">Name <i class="fa-solid fa-chevron-down"></i></th>
-                                <th scope="col">Email <i class="fa-solid fa-chevron-down"></i></th>
-                                <th scope="col">Phone <i class="fa-solid fa-chevron-down"></i></th>
-                                <th scope="col">Gender <i class="fa-solid fa-chevron-down"></i></th>
-                                <th scope="col">DOB <i class="fa-solid fa-chevron-down"></i></th>
-                                <th scope="col">Country <i class="fa-solid fa-chevron-down"></i></th>
+                                <th scope="col">Sl.No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">DOB</th>
+                                <th scope="col">Country</th>
                             </tr>
                         </thead>
                         <tbody class="textColour" id="tableBody">
@@ -83,6 +83,7 @@
                     </table>
                 </div>
             </div>
+            <div id="searchError" class="d-flex justify-content-center  "></div>
             <div class="paginationSection d-flex justify-content-end pe-4 flex-grow-1">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
@@ -138,8 +139,8 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12  d-flex flex-column gap-1">
                         <label for="addSalutation" class="form-label fw-normal m-0">Salutation</label>
-                        <select class="forms p-2 text-secondary"  id="addSalutation">
-                            <option selected class="text-secondary" value="">select</option>
+                        <select class="forms p-2 text-dark"  id="addSalutation">
+                            <option selected class="text-dark" value="">select</option>
                             <option class="text-dark">Mr.</option>
                             <option class="text-dark">Mrs.</option>
                             <option class="text-dark" >Ms.</option>
@@ -219,7 +220,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12  d-flex flex-column gap-1">
                         <label for="addCountry" class="form-label fw-normal m-0">Country</label>
-                        <select class="forms  p-2 text-secondary" aria-label="select" id="addCountry">
+                        <select class="forms  p-2 text-dark" aria-label="select" id="addCountry">
                             <option selected value="">select</option>
                             <option >India</option>
                             <option >USA</option>
@@ -233,7 +234,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column gap-1 top-margin">
                         <label for="addState" class="form-label fw-normal m-0">State</label>
-                        <select class="forms  p-2 text-secondary" aria-label="select" id="addState">
+                        <select class="forms  p-2 text-dark" aria-label="select" id="addState">
                             <option selected value="">select</option>
                             <option >Kerala</option>
                             <option >Tamilnadu</option>
@@ -435,5 +436,6 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
